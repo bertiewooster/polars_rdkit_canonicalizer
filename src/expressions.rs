@@ -14,16 +14,16 @@ fn pig_latinnify(inputs: &[Series]) -> PolarsResult<Series> {
     Ok(out.into_series())
 }
 
-use rdkit::ROMol;
+// use rdkit::ROMol;
 
-#[polars_expr(output_type=String)]
-fn canonicalize(inputs: &[Series]) -> PolarsResult<Series> {
-    let ca: &StringChunked = inputs[0].str()?;
-    // let ca: &str = inputs[0].str()?;
-    let romol = ROMol::from_smiles(ca).unwrap();
-    // let romol = Molecule::new_from_smiles(ca).unwrap();
-    let out: StringChunked = ca.apply_to_buffer(|value: &str, output: &mut String| {
-        write!(output, "{}", romol.as_smiles()).unwrap()
-    });
-    Ok(out.into_series())
-}
+// #[polars_expr(output_type=String)]
+// fn canonicalize(inputs: &[Series]) -> PolarsResult<Series> {
+//     let ca: &StringChunked = inputs[0].str()?;
+//     // let ca: &str = inputs[0].str()?;
+//     let romol = ROMol::from_smiles(ca).unwrap();
+//     // let romol = Molecule::new_from_smiles(ca).unwrap();
+//     let out: StringChunked = ca.apply_to_buffer(|value: &str, output: &mut String| {
+//         write!(output, "{}", romol.as_smiles()).unwrap()
+//     });
+//     Ok(out.into_series())
+// }
